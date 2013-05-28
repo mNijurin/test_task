@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="facebook_app_id">464610510221913</string>
 	<string name="app_name">TestTask</string>
+	<string name="login_button">Log In</string>
 </resources>
