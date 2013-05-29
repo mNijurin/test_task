@@ -132,7 +132,7 @@ public class GraphObjectPagingLoaderTests extends FragmentTestCase<GraphObjectPa
 
         @Override
         public void onLoadFinished(Loader<SimpleGraphObjectCursor<GraphPlace>> loader,
-                SimpleGraphObjectCursor<GraphPlace> data) {
+                                   SimpleGraphObjectCursor<GraphPlace> data) {
             results = data;
             ++onLoadFinishedCount;
             testBlocker.signal();
@@ -145,7 +145,7 @@ public class GraphObjectPagingLoaderTests extends FragmentTestCase<GraphObjectPa
         }
     }
 
-    public static class DummyFragment extends Fragment  {
+    public static class DummyFragment extends Fragment {
     }
 
     public static class TestActivity extends FragmentTestCase.TestFragmentActivity<DummyFragment> {

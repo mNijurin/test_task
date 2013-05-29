@@ -138,7 +138,7 @@ public class FriendPickerFragmentTests extends FragmentTestCase<FriendPickerFrag
         assertNotNull(firstChild);
 
         // Assert our state before we touch anything.
-        CheckBox checkBox = (CheckBox)listView.findViewById(R.id.com_facebook_picker_checkbox);
+        CheckBox checkBox = (CheckBox) listView.findViewById(R.id.com_facebook_picker_checkbox);
         assertNotNull(checkBox);
         assertFalse(checkBox.isChecked());
         assertEquals(0, fragment.getSelection().size());

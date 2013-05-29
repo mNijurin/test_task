@@ -141,7 +141,7 @@ final class NativeProtocol {
 
     // Messages supported by PlatformService:
     static final int MESSAGE_GET_ACCESS_TOKEN_REQUEST = 0x10000;
-    static final int MESSAGE_GET_ACCESS_TOKEN_REPLY   = 0x10001;
+    static final int MESSAGE_GET_ACCESS_TOKEN_REPLY = 0x10001;
 
     // MESSAGE_ERROR_REPLY data keys:
     // See STATUS_*
@@ -195,15 +195,15 @@ final class NativeProtocol {
     static final String AUDIENCE_EVERYONE = "EVERYONE";
 
     static Intent createLoginDialog20121101Intent(Context context, String applicationId, ArrayList<String> permissions,
-            String audience) {
+                                                  String audience) {
         Intent intent = new Intent()
-                    .setAction(INTENT_ACTION_PLATFORM_ACTIVITY)
-                    .addCategory(Intent.CATEGORY_DEFAULT)
-                    .putExtra(EXTRA_PROTOCOL_VERSION, PROTOCOL_VERSION_20121101)
-                    .putExtra(EXTRA_PROTOCOL_ACTION, ACTION_LOGIN_DIALOG)
-                    .putExtra(EXTRA_APPLICATION_ID, applicationId)
-                    .putStringArrayListExtra(EXTRA_PERMISSIONS, ensureDefaultPermissions(permissions))
-                    .putExtra(EXTRA_WRITE_PRIVACY, ensureDefaultAudience(audience));
+                .setAction(INTENT_ACTION_PLATFORM_ACTIVITY)
+                .addCategory(Intent.CATEGORY_DEFAULT)
+                .putExtra(EXTRA_PROTOCOL_VERSION, PROTOCOL_VERSION_20121101)
+                .putExtra(EXTRA_PROTOCOL_ACTION, ACTION_LOGIN_DIALOG)
+                .putExtra(EXTRA_APPLICATION_ID, applicationId)
+                .putStringArrayListExtra(EXTRA_PERMISSIONS, ensureDefaultPermissions(permissions))
+                .putExtra(EXTRA_WRITE_PRIVACY, ensureDefaultAudience(audience));
         return validateKatanaActivityIntent(context, intent);
     }
 

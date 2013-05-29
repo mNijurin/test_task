@@ -73,7 +73,7 @@ public class FacebookActivityTestCase<T extends Activity> extends ActivityInstru
     }
 
     protected TestSession getTestSessionWithSharedUserAndPermissions(String sessionUniqueUserTag,
-            List<String> permissions) {
+                                                                     List<String> permissions) {
         return TestSession.createSessionWithSharedUser(getActivity(), permissions, sessionUniqueUserTag);
     }
 
@@ -101,13 +101,13 @@ public class FacebookActivityTestCase<T extends Activity> extends ActivityInstru
     }
 
     protected TestSession openTestSessionWithSharedUserAndPermissions(String sessionUniqueUserTag,
-            String... permissions) {
+                                                                      String... permissions) {
         List<String> permissionList = (permissions != null) ? Arrays.asList(permissions) : null;
         return openTestSessionWithSharedUserAndPermissions(sessionUniqueUserTag, permissionList);
     }
 
     protected TestSession openTestSessionWithSharedUserAndPermissions(String sessionUniqueUserTag,
-            List<String> permissions) {
+                                                                      List<String> permissions) {
         final TestBlocker blocker = getTestBlocker();
         TestSession session = getTestSessionWithSharedUserAndPermissions(sessionUniqueUserTag, permissions);
         openSession(getActivity(), session, blocker);
@@ -296,7 +296,7 @@ public class FacebookActivityTestCase<T extends Activity> extends ActivityInstru
     }
 
     protected <U extends GraphObject> U batchCreateAndGet(Session session, String graphPath, GraphObject graphObject,
-            String fields, Class<U> resultClass) {
+                                                          String fields, Class<U> resultClass) {
         Request create = Request.newPostRequest(session, graphPath, graphObject, new ExpectSuccessCallback());
         create.setBatchEntryName("create");
         Request get = Request.newGraphPathRequest(session, "{result=create:$.id}", new ExpectSuccessCallback());
@@ -310,7 +310,7 @@ public class FacebookActivityTestCase<T extends Activity> extends ActivityInstru
     }
 
     protected <U extends GraphObject> U batchUpdateAndGet(Session session, String graphPath, GraphObject graphObject,
-            String fields, Class<U> resultClass) {
+                                                          String fields, Class<U> resultClass) {
         Request update = Request.newPostRequest(session, graphPath, graphObject, new ExpectSuccessCallback());
         Request get = Request.newGraphPathRequest(session, graphPath, new ExpectSuccessCallback());
         if (fields != null) {

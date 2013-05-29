@@ -24,139 +24,139 @@ import org.json.JSONObject;
 public class FacebookRequestErrorTests extends FacebookTestCase {
     public static final String ERROR_SINGLE_RESPONSE =
             "{\n" +
-            "  \"error\": {\n" +
-            "    \"message\": \"Unknown path components: /unknown\",\n" +
-            "    \"type\": \"OAuthException\",\n" +
-            "    \"code\": 2500\n" +
-            "  }\n" +
-            "}";
+                    "  \"error\": {\n" +
+                    "    \"message\": \"Unknown path components: /unknown\",\n" +
+                    "    \"type\": \"OAuthException\",\n" +
+                    "    \"code\": 2500\n" +
+                    "  }\n" +
+                    "}";
 
     public static final String ERROR_BATCH_RESPONSE =
             "[\n" +
-            "  {\n" +
-            "    \"headers\": [\n" +
-            "      {\n" +
-            "        \"value\": \"*\",\n" +
-            "        \"name\": \"Access-Control-Allow-Origin\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"no-store\",\n" +
-            "        \"name\": \"Cache-Control\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"close\",\n" +
-            "        \"name\": \"Connection\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"text\\/javascript; charset=UTF-8\",\n" +
-            "        \"name\": \"Content-Type\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"Sat, 01 Jan 2000 00:00:00 GMT\",\n" +
-            "        \"name\": \"Expires\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"no-cache\",\n" +
-            "        \"name\": \"Pragma\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"OAuth \\\"Facebook Platform\\\" \\\"invalid_request\\\" \\\"An active access token must be used to query information about the current user.\\\"\",\n" +
-            "        \"name\": \"WWW-Authenticate\"\n" +
-            "      }\n" +
-            "    ],\n" +
-            "    \"body\": \"{\\\"error\\\":{\\\"message\\\":\\\"An active access token must be used to query information about the current user.\\\",\\\"type\\\":\\\"OAuthException\\\",\\\"code\\\":2500}}\",\n" +
-            "    \"code\": 400\n" +
-            "  },\n" +
-            "  {\n" +
-            "    \"headers\": [\n" +
-            "      {\n" +
-            "        \"value\": \"*\",\n" +
-            "        \"name\": \"Access-Control-Allow-Origin\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"no-store\",\n" +
-            "        \"name\": \"Cache-Control\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"close\",\n" +
-            "        \"name\": \"Connection\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"text\\/javascript; charset=UTF-8\",\n" +
-            "        \"name\": \"Content-Type\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"Sat, 01 Jan 2000 00:00:00 GMT\",\n" +
-            "        \"name\": \"Expires\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"no-cache\",\n" +
-            "        \"name\": \"Pragma\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"value\": \"OAuth \\\"Facebook Platform\\\" \\\"invalid_request\\\" \\\"An active access token must be used to query information about the current user.\\\"\",\n" +
-            "        \"name\": \"WWW-Authenticate\"\n" +
-            "      }\n" +
-            "    ],\n" +
-            "    \"body\": \"{\\\"error\\\":{\\\"message\\\":\\\"An active access token must be used to query information about the current user.\\\",\\\"type\\\":\\\"OAuthException\\\",\\\"code\\\":2500}}\",\n" +
-            "    \"code\": 400\n" +
-            "  }\n" +
-            "]";
+                    "  {\n" +
+                    "    \"headers\": [\n" +
+                    "      {\n" +
+                    "        \"value\": \"*\",\n" +
+                    "        \"name\": \"Access-Control-Allow-Origin\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"no-store\",\n" +
+                    "        \"name\": \"Cache-Control\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"close\",\n" +
+                    "        \"name\": \"Connection\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"text\\/javascript; charset=UTF-8\",\n" +
+                    "        \"name\": \"Content-Type\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"Sat, 01 Jan 2000 00:00:00 GMT\",\n" +
+                    "        \"name\": \"Expires\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"no-cache\",\n" +
+                    "        \"name\": \"Pragma\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"OAuth \\\"Facebook Platform\\\" \\\"invalid_request\\\" \\\"An active access token must be used to query information about the current user.\\\"\",\n" +
+                    "        \"name\": \"WWW-Authenticate\"\n" +
+                    "      }\n" +
+                    "    ],\n" +
+                    "    \"body\": \"{\\\"error\\\":{\\\"message\\\":\\\"An active access token must be used to query information about the current user.\\\",\\\"type\\\":\\\"OAuthException\\\",\\\"code\\\":2500}}\",\n" +
+                    "    \"code\": 400\n" +
+                    "  },\n" +
+                    "  {\n" +
+                    "    \"headers\": [\n" +
+                    "      {\n" +
+                    "        \"value\": \"*\",\n" +
+                    "        \"name\": \"Access-Control-Allow-Origin\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"no-store\",\n" +
+                    "        \"name\": \"Cache-Control\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"close\",\n" +
+                    "        \"name\": \"Connection\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"text\\/javascript; charset=UTF-8\",\n" +
+                    "        \"name\": \"Content-Type\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"Sat, 01 Jan 2000 00:00:00 GMT\",\n" +
+                    "        \"name\": \"Expires\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"no-cache\",\n" +
+                    "        \"name\": \"Pragma\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"value\": \"OAuth \\\"Facebook Platform\\\" \\\"invalid_request\\\" \\\"An active access token must be used to query information about the current user.\\\"\",\n" +
+                    "        \"name\": \"WWW-Authenticate\"\n" +
+                    "      }\n" +
+                    "    ],\n" +
+                    "    \"body\": \"{\\\"error\\\":{\\\"message\\\":\\\"An active access token must be used to query information about the current user.\\\",\\\"type\\\":\\\"OAuthException\\\",\\\"code\\\":2500}}\",\n" +
+                    "    \"code\": 400\n" +
+                    "  }\n" +
+                    "]";
 
 
     public static final String ERROR_SINGLE_RESPONSE_THROTTLE =
             "{\n" +
-            "  \"error\": {\n" +
-            "    \"message\": \"Application request limit reached\",\n" +
-            "    \"code\": 4\n" +
-            "  }\n" +
-            "}";
+                    "  \"error\": {\n" +
+                    "    \"message\": \"Application request limit reached\",\n" +
+                    "    \"code\": 4\n" +
+                    "  }\n" +
+                    "}";
 
     public static final String ERROR_SINGLE_RESPONSE_SERVER =
             "{\n" +
-            "  \"error\": {\n" +
-            "    \"message\": \"Some Server Error\",\n" +
-            "    \"code\": 2\n" +
-            "  }\n" +
-            "}";
+                    "  \"error\": {\n" +
+                    "    \"message\": \"Some Server Error\",\n" +
+                    "    \"code\": 2\n" +
+                    "  }\n" +
+                    "}";
 
     public static final String ERROR_SINGLE_RESPONSE_PERMISSION =
             "{\n" +
-            "  \"error\": {\n" +
-            "    \"type\": \"OAuthException\",\n" +
-            "    \"message\": \"(#200) Requires extended permission: publish_actions\",\n" +
-            "    \"code\": 200\n" +
-            "  }\n" +
-            "}";
+                    "  \"error\": {\n" +
+                    "    \"type\": \"OAuthException\",\n" +
+                    "    \"message\": \"(#200) Requires extended permission: publish_actions\",\n" +
+                    "    \"code\": 200\n" +
+                    "  }\n" +
+                    "}";
 
     public static final String ERROR_SINGLE_RESPONSE_WEB_LOGIN =
             "{\n" +
-            "  \"error\": {\n" +
-            "    \"message\": \"User need to login\",\n" +
-            "    \"type\": \"OAuthException\",\n" +
-            "    \"code\": 102,\n" +
-            "    \"error_subcode\": 459\n" +
-            "  }\n" +
-            "}";
+                    "  \"error\": {\n" +
+                    "    \"message\": \"User need to login\",\n" +
+                    "    \"type\": \"OAuthException\",\n" +
+                    "    \"code\": 102,\n" +
+                    "    \"error_subcode\": 459\n" +
+                    "  }\n" +
+                    "}";
 
     public static final String ERROR_SINGLE_RESPONSE_RELOGIN =
             "{\n" +
-            "  \"error\": {\n" +
-            "    \"message\": \"User need to relogin\",\n" +
-            "    \"type\": \"OAuthException\",\n" +
-            "    \"code\": 102\n" +
-            "  }\n" +
-            "}";
+                    "  \"error\": {\n" +
+                    "    \"message\": \"User need to relogin\",\n" +
+                    "    \"type\": \"OAuthException\",\n" +
+                    "    \"code\": 102\n" +
+                    "  }\n" +
+                    "}";
 
     public static final String ERROR_SINGLE_RESPONSE_RELOGIN_DELETED_APP =
             "{\n" +
-            "  \"error\": {\n" +
-            "    \"message\": \"User need to relogin\",\n" +
-            "    \"type\": \"OAuthException\",\n" +
-            "    \"code\": 190,\n" +
-            "    \"error_subcode\": 458\n" +
-            "  }\n" +
-            "}";
+                    "  \"error\": {\n" +
+                    "    \"message\": \"User need to relogin\",\n" +
+                    "    \"type\": \"OAuthException\",\n" +
+                    "    \"code\": 190,\n" +
+                    "    \"error_subcode\": 458\n" +
+                    "  }\n" +
+                    "}";
 
     public void testClientException() {
         final String errorMsg = "some error happened";
@@ -208,7 +208,7 @@ public class FacebookRequestErrorTests extends FacebookTestCase {
                 error.getErrorMessage());
         assertEquals("OAuthException", error.getErrorType());
         assertEquals(2500, error.getErrorCode());
-        assertTrue(error.getBatchRequestResult() instanceof  JSONArray);
+        assertTrue(error.getBatchRequestResult() instanceof JSONArray);
         assertEquals(FacebookRequestError.Category.BAD_REQUEST, error.getCategory());
         assertEquals(0, error.getUserActionMessageId());
     }

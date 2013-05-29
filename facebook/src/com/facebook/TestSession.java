@@ -81,7 +81,7 @@ public class TestSession extends Session {
     private boolean wasAskedToExtendAccessToken;
 
     TestSession(Activity activity, List<String> permissions, TokenCachingStrategy tokenCachingStrategy,
-            String sessionUniqueUserTag, Mode mode) {
+                String sessionUniqueUserTag, Mode mode) {
         super(activity, TestSession.testApplicationId, tokenCachingStrategy);
 
         Validate.notNull(permissions, "permissions");
@@ -143,7 +143,7 @@ public class TestSession extends Session {
      * @return a new TestSession that is in the CREATED state, ready to be opened
      */
     public static TestSession createSessionWithSharedUser(Activity activity, List<String> permissions,
-            String sessionUniqueUserTag) {
+                                                          String sessionUniqueUserTag) {
         return createTestSession(activity, permissions, Mode.SHARED, sessionUniqueUserTag);
     }
 
@@ -201,7 +201,7 @@ public class TestSession extends Session {
     }
 
     private static synchronized TestSession createTestSession(Activity activity, List<String> permissions, Mode mode,
-            String sessionUniqueUserTag) {
+                                                              String sessionUniqueUserTag) {
         if (Utility.isNullOrEmpty(testApplicationId) || Utility.isNullOrEmpty(testApplicationSecret)) {
             throw new FacebookException("Must provide app ID and secret");
         }
@@ -271,7 +271,7 @@ public class TestSession extends Session {
     }
 
     private static synchronized void populateTestAccounts(Collection<TestAccount> testAccounts,
-            Collection<UserAccount> userAccounts) {
+                                                          Collection<UserAccount> userAccounts) {
         // We get different sets of data from each of these queries. We want to combine them into a single data
         // structure. We have added a Name property to the TestAccount interface, even though we don't really get
         // a name back from the service from that query. We stick the Name from the corresponding UserAccount in it.

@@ -137,7 +137,7 @@ public class LoginButtonTest extends SessionTestsBase {
 
         final LoginButton button = new LoginButton(getActivity());
         button.setSession(session);
-        button.setReadPermissions(Arrays.asList(new String[] {"read_permission", "read_another"}));
+        button.setReadPermissions(Arrays.asList(new String[]{"read_permission", "read_another"}));
         session.addAuthorizeResult("A token of thanks", new ArrayList<String>(), AccessTokenSource.TEST_USER);
         session.addCallback(statusRecorder);
 
@@ -171,7 +171,7 @@ public class LoginButtonTest extends SessionTestsBase {
 
         final LoginButton button = new LoginButton(getActivity());
         button.setSession(session);
-        button.setPublishPermissions(Arrays.asList(new String[] {"publish_permission", "publish_another"}));
+        button.setPublishPermissions(Arrays.asList(new String[]{"publish_permission", "publish_another"}));
         session.addAuthorizeResult("A token of thanks", new ArrayList<String>(), AccessTokenSource.TEST_USER);
         session.addCallback(statusRecorder);
 
@@ -196,9 +196,9 @@ public class LoginButtonTest extends SessionTestsBase {
     @LargeTest
     public void testCantAddReadThenPublishPermissions() {
         final LoginButton button = new LoginButton(getActivity());
-        button.setReadPermissions(Arrays.asList(new String[] {"read_permission", "read_another"}));
+        button.setReadPermissions(Arrays.asList(new String[]{"read_permission", "read_another"}));
         try {
-            button.setPublishPermissions(Arrays.asList(new String[] {"read_permission", "read_a_third"}));
+            button.setPublishPermissions(Arrays.asList(new String[]{"read_permission", "read_a_third"}));
             fail("Should not be able to reach here");
         } catch (Exception e) {
             assertTrue(e instanceof UnsupportedOperationException);
@@ -210,9 +210,9 @@ public class LoginButtonTest extends SessionTestsBase {
     @LargeTest
     public void testCantAddPublishThenReadPermissions() {
         final LoginButton button = new LoginButton(getActivity());
-        button.setPublishPermissions(Arrays.asList(new String[] {"publish_permission", "publish_another"}));
+        button.setPublishPermissions(Arrays.asList(new String[]{"publish_permission", "publish_another"}));
         try {
-            button.setReadPermissions(Arrays.asList(new String[] {"publish_permission", "publish_a_third"}));
+            button.setReadPermissions(Arrays.asList(new String[]{"publish_permission", "publish_a_third"}));
             fail("Should not be able to reach here");
         } catch (Exception e) {
             assertTrue(e instanceof UnsupportedOperationException);
@@ -224,9 +224,9 @@ public class LoginButtonTest extends SessionTestsBase {
     @LargeTest
     public void testCanAddReadThenPublishPermissionsWithClear() {
         final LoginButton button = new LoginButton(getActivity());
-        button.setReadPermissions(Arrays.asList(new String[] {"read_permission", "read_another"}));
+        button.setReadPermissions(Arrays.asList(new String[]{"read_permission", "read_another"}));
         button.clearPermissions();
-        button.setPublishPermissions(Arrays.asList(new String[] {"publish_permission", "publish_another"}));
+        button.setPublishPermissions(Arrays.asList(new String[]{"publish_permission", "publish_another"}));
     }
 
     @SmallTest
@@ -244,7 +244,7 @@ public class LoginButtonTest extends SessionTestsBase {
         final LoginButton button = new LoginButton(getActivity());
         button.setSession(session);
         session.addAuthorizeResult("A token of thanks",
-                Arrays.asList(new String[] {"read_permission", "read_another"}), AccessTokenSource.TEST_USER);
+                Arrays.asList(new String[]{"read_permission", "read_another"}), AccessTokenSource.TEST_USER);
         session.addCallback(statusRecorder);
 
         button.performClick();
@@ -253,9 +253,9 @@ public class LoginButtonTest extends SessionTestsBase {
         statusRecorder.waitForCall(session, SessionState.OPENED, null);
 
         // this should be fine
-        button.setReadPermissions(Arrays.asList(new String[] {"read_permission", "read_another"}));
+        button.setReadPermissions(Arrays.asList(new String[]{"read_permission", "read_another"}));
 
-        button.setReadPermissions(Arrays.asList(new String[] {"read_permission", "read_a_third"}));
+        button.setReadPermissions(Arrays.asList(new String[]{"read_permission", "read_a_third"}));
         List<String> permissions = button.getPermissions();
         assertTrue(permissions.contains("read_permission"));
         assertTrue(permissions.contains("read_another"));
@@ -286,7 +286,7 @@ public class LoginButtonTest extends SessionTestsBase {
 
         final LoginButton button = new LoginButton(getActivity());
         button.setSession(session);
-        button.setPublishPermissions(Arrays.asList(new String[] {"publish_permission", "publish_another"}));
+        button.setPublishPermissions(Arrays.asList(new String[]{"publish_permission", "publish_another"}));
         button.setDefaultAudience(SessionDefaultAudience.FRIENDS);
         session.addAuthorizeResult("A token of thanks", new ArrayList<String>(), AccessTokenSource.TEST_USER);
         session.addCallback(statusRecorder);

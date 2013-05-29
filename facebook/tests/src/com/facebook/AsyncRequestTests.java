@@ -64,7 +64,7 @@ public class AsyncRequestTests extends FacebookTestCase {
     @LargeTest
     public void testExecuteBatchWithZeroRequestsThrows() throws Exception {
         try {
-            TestRequestAsyncTask task = new TestRequestAsyncTask(new Request[] {});
+            TestRequestAsyncTask task = new TestRequestAsyncTask(new Request[]{});
 
             task.executeOnBlockerThread();
 
@@ -80,7 +80,7 @@ public class AsyncRequestTests extends FacebookTestCase {
     @LargeTest
     public void testExecuteBatchWithNullRequestThrows() throws Exception {
         try {
-            TestRequestAsyncTask task = new TestRequestAsyncTask(new Request[] { null });
+            TestRequestAsyncTask task = new TestRequestAsyncTask(new Request[]{null});
 
             task.executeOnBlockerThread();
 
@@ -125,7 +125,7 @@ public class AsyncRequestTests extends FacebookTestCase {
         });
         HttpURLConnection connection = Request.toHttpConnection(request);
 
-        TestRequestAsyncTask task = new TestRequestAsyncTask(connection, Arrays.asList(new Request[] { request }));
+        TestRequestAsyncTask task = new TestRequestAsyncTask(connection, Arrays.asList(new Request[]{request}));
 
         task.executeOnBlockerThread();
 

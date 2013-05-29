@@ -168,12 +168,12 @@ public final class AccessTokenTests extends AndroidTestCase {
     public void testCachePutGet() {
         Bundle bundle = new Bundle();
 
-        for (String token : new String[] { "", "A completely random token value" }) {
+        for (String token : new String[]{"", "A completely random token value"}) {
             TokenCachingStrategy.putToken(bundle, token);
             assertEquals(token, TokenCachingStrategy.getToken(bundle));
         }
 
-        for (Date date : new Date[] { new Date(42), new Date() }) {
+        for (Date date : new Date[]{new Date(42), new Date()}) {
             TokenCachingStrategy.putExpirationDate(bundle, date);
             assertEquals(date, TokenCachingStrategy.getExpirationDate(bundle));
 
@@ -181,7 +181,7 @@ public final class AccessTokenTests extends AndroidTestCase {
             assertEquals(date, TokenCachingStrategy.getLastRefreshDate(bundle));
         }
 
-        for (long milliseconds : new long[] { 0, -1, System.currentTimeMillis() }) {
+        for (long milliseconds : new long[]{0, -1, System.currentTimeMillis()}) {
             TokenCachingStrategy.putExpirationMilliseconds(bundle, milliseconds);
             assertEquals(milliseconds, TokenCachingStrategy.getExpirationMilliseconds(bundle));
 
@@ -215,7 +215,7 @@ public final class AccessTokenTests extends AndroidTestCase {
         AccessToken accessToken = AccessToken.createFromString("a token",
                 Arrays.asList("permission_1", "permission_2"), AccessTokenSource.WEB_VIEW);
         AccessToken res = TestUtils.serializeAndUnserialize(accessToken);
-        
+
         // if one field got serialized most likely all other non transient fields
         // got serialized correctly.
         assertEquals(accessToken.getPermissions(), res.getPermissions());

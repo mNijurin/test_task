@@ -43,6 +43,7 @@ public class RequestBatch extends AbstractList<Request> {
 
     /**
      * Constructor.
+     *
      * @param requests the requests to add to the batch
      */
     public RequestBatch(Collection<Request> requests) {
@@ -51,6 +52,7 @@ public class RequestBatch extends AbstractList<Request> {
 
     /**
      * Constructor.
+     *
      * @param requests the requests to add to the batch
      */
     public RequestBatch(Request... requests) {
@@ -59,6 +61,7 @@ public class RequestBatch extends AbstractList<Request> {
 
     /**
      * Constructor.
+     *
      * @param requests the requests to add to the batch
      */
     public RequestBatch(RequestBatch requests) {
@@ -70,6 +73,7 @@ public class RequestBatch extends AbstractList<Request> {
 
     /**
      * Gets the timeout to wait for responses from the server before a timeout error occurs.
+     *
      * @return the timeout, in milliseconds; 0 (the default) means do not timeout
      */
     public int getTimeout() {
@@ -78,6 +82,7 @@ public class RequestBatch extends AbstractList<Request> {
 
     /**
      * Sets the timeout to wait for responses from the server before a timeout error occurs.
+     *
      * @param timeoutInMilliseconds the timeout, in milliseconds; 0 means do not timeout
      */
     public void setTimeout(int timeoutInMilliseconds) {
@@ -177,11 +182,9 @@ public class RequestBatch extends AbstractList<Request> {
      *
      * @return a list of Response objects representing the results of the requests; responses are returned in the same
      *         order as the requests were specified.
-     *
-     * @throws FacebookException
-     *            If there was an error in the protocol used to communicate with the service
+     * @throws FacebookException        If there was an error in the protocol used to communicate with the service
      * @throws IllegalArgumentException if the passed in RequestBatch is empty
-     * @throws NullPointerException if the passed in RequestBatch or any of its contents are null
+     * @throws NullPointerException     if the passed in RequestBatch or any of its contents are null
      */
     public final List<Response> executeAndWait() {
         return executeAndWaitImpl();
@@ -196,9 +199,8 @@ public class RequestBatch extends AbstractList<Request> {
      * This should only be called from the UI thread.
      *
      * @return a RequestAsyncTask that is executing the request
-     *
      * @throws IllegalArgumentException if this batch is empty
-     * @throws NullPointerException if any of the contents of this batch are null
+     * @throws NullPointerException     if any of the contents of this batch are null
      */
     public final RequestAsyncTask executeAsync() {
         return executeAsyncImpl();
@@ -212,7 +214,7 @@ public class RequestBatch extends AbstractList<Request> {
         /**
          * The method that will be called when a batch completes.
          *
-         * @param batch     the RequestBatch containing the Requests which were executed
+         * @param batch the RequestBatch containing the Requests which were executed
          */
         void onBatchCompleted(RequestBatch batch);
     }

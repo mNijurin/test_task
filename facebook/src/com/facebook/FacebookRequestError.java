@@ -16,7 +16,7 @@
 
 package com.facebook;
 
-import com.example.facebook.R;
+import com.facebook.android.R;
 import com.facebook.internal.Utility;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +35,9 @@ import java.net.HttpURLConnection;
  */
 public final class FacebookRequestError {
 
-    /** Represents an invalid or unknown error code from the server. */
+    /**
+     * Represents an invalid or unknown error code from the server.
+     */
     public static final int INVALID_ERROR_CODE = -1;
 
     /**
@@ -105,9 +107,9 @@ public final class FacebookRequestError {
     private final FacebookException exception;
 
     private FacebookRequestError(int requestStatusCode, int errorCode,
-            int subErrorCode, String errorType, String errorMessage, JSONObject requestResultBody,
-            JSONObject requestResult, Object batchRequestResult, HttpURLConnection connection,
-            FacebookException exception) {
+                                 int subErrorCode, String errorType, String errorMessage, JSONObject requestResultBody,
+                                 JSONObject requestResult, Object batchRequestResult, HttpURLConnection connection,
+                                 FacebookException exception) {
         this.requestStatusCode = requestStatusCode;
         this.errorCode = errorCode;
         this.subErrorCode = subErrorCode;
@@ -121,7 +123,7 @@ public final class FacebookRequestError {
         boolean isLocalException = false;
         if (exception != null) {
             this.exception = exception;
-            isLocalException =  true;
+            isLocalException = true;
         } else {
             this.exception = new FacebookServiceException(this, errorMessage);
         }
@@ -178,8 +180,8 @@ public final class FacebookRequestError {
     }
 
     private FacebookRequestError(int requestStatusCode, int errorCode,
-            int subErrorCode, String errorType, String errorMessage, JSONObject requestResultBody,
-            JSONObject requestResult, Object batchRequestResult, HttpURLConnection connection) {
+                                 int subErrorCode, String errorType, String errorMessage, JSONObject requestResultBody,
+                                 JSONObject requestResult, Object batchRequestResult, HttpURLConnection connection) {
         this(requestStatusCode, errorCode, subErrorCode, errorType, errorMessage,
                 requestResultBody, requestResult, batchRequestResult, connection, null);
     }
@@ -346,7 +348,7 @@ public final class FacebookRequestError {
     }
 
     static FacebookRequestError checkResponseAndCreateError(JSONObject singleResult,
-            Object batchResult, HttpURLConnection connection) {
+                                                            Object batchResult, HttpURLConnection connection) {
         try {
             if (singleResult.has(CODE_KEY)) {
                 int responseCode = singleResult.getInt(CODE_KEY);
@@ -419,7 +421,9 @@ public final class FacebookRequestError {
          */
         AUTHENTICATION_REOPEN_SESSION,
 
-        /** Indicates that the error is permission related. */
+        /**
+         * Indicates that the error is permission related.
+         */
         PERMISSION,
 
         /**
@@ -428,7 +432,9 @@ public final class FacebookRequestError {
          */
         SERVER,
 
-        /** Indicates that the error results from the server throttling the client. */
+        /**
+         * Indicates that the error results from the server throttling the client.
+         */
         THROTTLING,
 
         /**
@@ -448,6 +454,8 @@ public final class FacebookRequestError {
          * not limited to, JSON parsing errors or {@link java.io.IOException}s.
          */
         CLIENT
-    };
+    }
+
+    ;
 
 }

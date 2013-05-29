@@ -27,7 +27,7 @@ import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import com.facebook.*;
-import com.example.facebook.BuildConfig;
+import com.facebook.android.BuildConfig;
 import com.facebook.model.GraphObject;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -153,7 +153,7 @@ public final class Utility {
 
     public static void disconnectQuietly(URLConnection connection) {
         if (connection instanceof HttpURLConnection) {
-            ((HttpURLConnection)connection).disconnect();
+            ((HttpURLConnection) connection).disconnect();
         }
     }
 
@@ -327,7 +327,7 @@ public final class Utility {
             }
 
             lastAppCheckedForAttributionStatus = applicationId;
-            attributionAllowedForLastAppChecked = ((Boolean)doesSupportAttribution == true);
+            attributionAllowedForLastAppChecked = ((Boolean) doesSupportAttribution == true);
             return attributionAllowedForLastAppChecked;
         }
     }

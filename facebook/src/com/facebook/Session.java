@@ -167,8 +167,8 @@ public class Session implements Serializable {
         private final AuthorizationRequest pendingRequest;
 
         SerializationProxyV1(String applicationId, SessionState state,
-                AccessToken tokenInfo, Date lastAttemptedTokenExtendDate,
-                boolean shouldAutoPublish, AuthorizationRequest pendingRequest) {
+                             AccessToken tokenInfo, Date lastAttemptedTokenExtendDate,
+                             boolean shouldAutoPublish, AuthorizationRequest pendingRequest) {
             this.applicationId = applicationId;
             this.state = state;
             this.tokenInfo = tokenInfo;
@@ -187,8 +187,8 @@ public class Session implements Serializable {
      * Used by version 1 of the serialization proxy, do not modify.
      */
     private Session(String applicationId, SessionState state,
-            AccessToken tokenInfo, Date lastAttemptedTokenExtendDate,
-            boolean shouldAutoPublish, AuthorizationRequest pendingRequest) {
+                    AccessToken tokenInfo, Date lastAttemptedTokenExtendDate,
+                    boolean shouldAutoPublish, AuthorizationRequest pendingRequest) {
         this.applicationId = applicationId;
         this.state = state;
         this.tokenInfo = tokenInfo;
@@ -801,7 +801,7 @@ public class Session implements Serializable {
      * @return The new Session or null if one could not be created
      */
     public static Session openActiveSession(Activity activity, boolean allowLoginUI,
-            StatusCallback callback) {
+                                            StatusCallback callback) {
         return openActiveSession(activity, allowLoginUI, new OpenRequest(activity).setCallback(callback));
     }
 
@@ -824,7 +824,7 @@ public class Session implements Serializable {
      * @return The new Session or null if one could not be created
      */
     public static Session openActiveSession(Context context, Fragment fragment,
-            boolean allowLoginUI, StatusCallback callback) {
+                                            boolean allowLoginUI, StatusCallback callback) {
         return openActiveSession(context, allowLoginUI, new OpenRequest(fragment).setCallback(callback));
     }
 
@@ -850,7 +850,7 @@ public class Session implements Serializable {
      * @return The new Session or null if one could not be created
      */
     public static Session openActiveSessionWithAccessToken(Context context, AccessToken accessToken,
-            StatusCallback callback) {
+                                                           StatusCallback callback) {
         Session session = new Session(context, null, null, false);
 
         setActiveSession(session);
@@ -1560,8 +1560,8 @@ public class Session implements Serializable {
          * Constructor to be used for V1 serialization only, DO NOT CHANGE.
          */
         private AuthorizationRequest(SessionLoginBehavior loginBehavior, int requestCode,
-                List<String> permissions, String defaultAudience, boolean isLegacy, String applicationId,
-                String validateSameFbidAsToken) {
+                                     List<String> permissions, String defaultAudience, boolean isLegacy, String applicationId,
+                                     String validateSameFbidAsToken) {
             startActivityDelegate = new StartActivityDelegate() {
                 @Override
                 public void startActivityForResult(Intent intent, int requestCode) {
@@ -1709,8 +1709,8 @@ public class Session implements Serializable {
             private final String validateSameFbidAsToken;
 
             private AuthRequestSerializationProxyV1(SessionLoginBehavior loginBehavior,
-                    int requestCode, List<String> permissions, String defaultAudience, boolean isLegacy,
-                    String applicationId, String validateSameFbidAsToken) {
+                                                    int requestCode, List<String> permissions, String defaultAudience, boolean isLegacy,
+                                                    String applicationId, String validateSameFbidAsToken) {
                 this.loginBehavior = loginBehavior;
                 this.requestCode = requestCode;
                 this.permissions = permissions;

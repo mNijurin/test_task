@@ -660,7 +660,7 @@ public class AuthorizationClientTests extends FacebookTestCase {
         outputStream.writeObject(client);
         outputStream.close();
 
-        byte [] byteArray = byteArrayOutputStream.toByteArray();
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
 
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
         ObjectInputStream inputStream = new ObjectInputStream(byteArrayInputStream);
@@ -669,7 +669,7 @@ public class AuthorizationClientTests extends FacebookTestCase {
         assertNotNull(obj);
         assertTrue(obj instanceof AuthorizationClient);
 
-        AuthorizationClient resultClient = (AuthorizationClient)obj;
+        AuthorizationClient resultClient = (AuthorizationClient) obj;
         assertNull(resultClient.startActivityDelegate);
         assertNull(resultClient.onCompletedListener);
         assertNull(resultClient.backgroundProcessingListener);

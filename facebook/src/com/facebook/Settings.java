@@ -24,7 +24,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
-import com.example.facebook.BuildConfig;
+import com.facebook.android.BuildConfig;
 import com.facebook.internal.Utility;
 import com.facebook.model.GraphObject;
 import com.facebook.internal.Validate;
@@ -77,7 +77,7 @@ public final class Settings {
     /**
      * Certain logging behaviors are available for debugging beyond those that should be
      * enabled in production.
-     *
+     * <p/>
      * Returns the types of extended logging that are currently enabled.
      *
      * @return a set containing enabled logging behaviors
@@ -91,11 +91,10 @@ public final class Settings {
     /**
      * Certain logging behaviors are available for debugging beyond those that should be
      * enabled in production.
-     *
+     * <p/>
      * Enables a particular extended logging in the sdk.
      *
-     * @param behavior
-     *          The LoggingBehavior to enable
+     * @param behavior The LoggingBehavior to enable
      */
     public static final void addLoggingBehavior(LoggingBehavior behavior) {
         synchronized (loggingBehaviors) {
@@ -106,11 +105,10 @@ public final class Settings {
     /**
      * Certain logging behaviors are available for debugging beyond those that should be
      * enabled in production.
-     *
+     * <p/>
      * Disables a particular extended logging behavior in the sdk.
      *
-     * @param behavior
-     *          The LoggingBehavior to disable
+     * @param behavior The LoggingBehavior to disable
      */
     public static final void removeLoggingBehavior(LoggingBehavior behavior) {
         synchronized (loggingBehaviors) {
@@ -121,7 +119,7 @@ public final class Settings {
     /**
      * Certain logging behaviors are available for debugging beyond those that should be
      * enabled in production.
-     *
+     * <p/>
      * Disables all extended logging behaviors.
      */
     public static final void clearLoggingBehaviors() {
@@ -133,11 +131,10 @@ public final class Settings {
     /**
      * Certain logging behaviors are available for debugging beyond those that should be
      * enabled in production.
-     *
+     * <p/>
      * Checks if a particular extended logging behavior is enabled.
      *
-     * @param behavior
-     *          The LoggingBehavior to check
+     * @param behavior The LoggingBehavior to check
      * @return whether behavior is enabled
      */
     public static final boolean isLoggingBehaviorEnabled(LoggingBehavior behavior) {
@@ -148,7 +145,7 @@ public final class Settings {
 
     /**
      * Returns the Executor used by the SDK for non-AsyncTask background work.
-     *
+     * <p/>
      * By default this uses AsyncTask Executor via reflection if the API level is high enough.
      * Otherwise this creates a new Executor with defaults similar to those used in AsyncTask.
      *
@@ -171,8 +168,7 @@ public final class Settings {
     /**
      * Sets the Executor used by the SDK for non-AsyncTask background work.
      *
-     * @param executor
-     *          the Executor to use; must not be null.
+     * @param executor the Executor to use; must not be null.
      */
     public static void setExecutor(Executor executor) {
         Validate.notNull(executor, "executor");
@@ -214,22 +210,24 @@ public final class Settings {
     /**
      * Manually publish install attribution to the Facebook graph.  Internally handles tracking repeat calls to prevent
      * multiple installs being published to the graph.
-     * @param context the current Context
+     *
+     * @param context       the current Context
      * @param applicationId the fb application being published.
      */
     public static void publishInstallAsync(final Context context, final String applicationId) {
-       publishInstallAsync(context, applicationId, null);
+        publishInstallAsync(context, applicationId, null);
     }
 
     /**
      * Manually publish install attribution to the Facebook graph.  Internally handles tracking repeat calls to prevent
      * multiple installs being published to the graph.
-     * @param context the current Context
+     *
+     * @param context       the current Context
      * @param applicationId the fb application being published.
-     * @param callback a callback to invoke with a Response object, carrying the server response, or an error.
+     * @param callback      a callback to invoke with a Response object, carrying the server response, or an error.
      */
     public static void publishInstallAsync(final Context context, final String applicationId,
-        final Request.Callback callback) {
+                                           final Request.Callback callback) {
         // grab the application context ahead of time, since we will return to the caller immediately.
         final Context applicationContext = context.getApplicationContext();
         Settings.getExecutor().execute(new Runnable() {
@@ -271,10 +269,11 @@ public final class Settings {
     /**
      * Manually publish install attribution to the Facebook graph.  Internally handles tracking repeat calls to prevent
      * multiple installs being published to the graph.
-     * @param context the current Context
+     *
+     * @param context       the current Context
      * @param applicationId the fb application being published.
      * @return returns false on error.  Applications should retry until true is returned.  Safe to call again after
-     * true is returned.
+     *         true is returned.
      */
     public static boolean publishInstallAndWait(final Context context, final String applicationId) {
         Response response = publishInstallAndWaitForResponse(context, applicationId);
@@ -284,7 +283,8 @@ public final class Settings {
     /**
      * Manually publish install attribution to the Facebook graph.  Internally handles caching repeat calls to prevent
      * multiple installs being published to the graph.
-     * @param context the current Context
+     *
+     * @param context       the current Context
      * @param applicationId the fb application being published.
      * @return returns a Response object, carrying the server response, or an error.
      */
@@ -295,8 +295,8 @@ public final class Settings {
             }
             String attributionId = Settings.getAttributionId(context.getContentResolver());
             SharedPreferences preferences = context.getSharedPreferences(ATTRIBUTION_PREFERENCES, Context.MODE_PRIVATE);
-            String pingKey = applicationId+"ping";
-            String jsonKey = applicationId+"json";
+            String pingKey = applicationId + "ping";
+            String jsonKey = applicationId + "json";
             long lastPing = preferences.getLong(pingKey, 0);
             String lastResponseJSON = preferences.getString(jsonKey, null);
 
@@ -313,8 +313,7 @@ public final class Settings {
                     if (lastResponseJSON != null) {
                         graphObject = GraphObject.Factory.create(new JSONObject(lastResponseJSON));
                     }
-                }
-                catch (JSONException je) {
+                } catch (JSONException je) {
                     // return the default graph object if there is any problem reading the data.
                 }
                 if (graphObject == null) {
@@ -339,7 +338,7 @@ public final class Settings {
 
                 // if we got an object response back, cache the string of the JSON.
                 if (publishResponse.getGraphObject() != null &&
-                    publishResponse.getGraphObject().getInnerJSONObject() != null) {
+                        publishResponse.getGraphObject().getInnerJSONObject() != null) {
                     editor.putString(jsonKey, publishResponse.getGraphObject().getInnerJSONObject().toString());
                 }
                 editor.commit();
@@ -355,10 +354,11 @@ public final class Settings {
 
     /**
      * Acquire the current attribution id from the facebook app.
+     *
      * @return returns null if the facebook app is not present on the phone.
      */
     public static String getAttributionId(ContentResolver contentResolver) {
-        String [] projection = {ATTRIBUTION_ID_COLUMN_NAME};
+        String[] projection = {ATTRIBUTION_ID_COLUMN_NAME};
         Cursor c = contentResolver.query(ATTRIBUTION_ID_CONTENT_URI, projection, null, null, null);
         if (c == null || !c.moveToFirst()) {
             return null;
@@ -382,6 +382,7 @@ public final class Settings {
      * endpoints to specify a set of platform migrations that are explicitly turned on or off for
      * that call, in order to ensure compatibility between a given version of the SDK and the
      * Graph API.
+     *
      * @return the migration bundle supported by this version of the SDK
      */
     public static String getMigrationBundle() {

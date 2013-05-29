@@ -24,8 +24,7 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.*;
 import com.facebook.*;
-import com.example.facebook.R;
-
+import com.facebook.android.R;
 import com.facebook.model.GraphObject;
 import org.json.JSONObject;
 
@@ -795,7 +794,7 @@ class GraphObjectAdapter<T extends GraphObject> extends BaseAdapter implements S
     }
 
     private static int compareGraphObjects(GraphObject a, GraphObject b, Collection<String> sortFields,
-            Collator collator) {
+                                           Collator collator) {
         for (String sortField : sortFields) {
             String sa = (String) a.getProperty(sortField);
             String sb = (String) b.getProperty(sortField);

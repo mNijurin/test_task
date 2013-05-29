@@ -28,7 +28,9 @@ import java.util.concurrent.Executor;
 
 public final class SettingsTests extends AndroidTestCase {
 
-    @SmallTest @MediumTest @LargeTest
+    @SmallTest
+    @MediumTest
+    @LargeTest
     public void testGetExecutor() {
         final ConditionVariable condition = new ConditionVariable();
 
@@ -43,13 +45,16 @@ public final class SettingsTests extends AndroidTestCase {
         assertTrue(success);
     }
 
-    @SmallTest @MediumTest @LargeTest
+    @SmallTest
+    @MediumTest
+    @LargeTest
     public void testSetExecutor() {
         final ConditionVariable condition = new ConditionVariable();
 
         final Runnable runnable = new Runnable() {
             @Override
-            public void run() { }
+            public void run() {
+            }
         };
 
         final Executor executor = new Executor() {
@@ -74,7 +79,9 @@ public final class SettingsTests extends AndroidTestCase {
         }
     }
 
-    @SmallTest @MediumTest @LargeTest
+    @SmallTest
+    @MediumTest
+    @LargeTest
     public void testLogdException() {
         try {
             throw new IOException("Simulated error");

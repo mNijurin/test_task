@@ -34,7 +34,7 @@ class ImageResponseCache {
 
     private volatile static FileLruCache imageCache;
 
-    synchronized static FileLruCache getCache(Context context) throws IOException{
+    synchronized static FileLruCache getCache(Context context) throws IOException {
         if (imageCache == null) {
             imageCache = new FileLruCache(context.getApplicationContext(), TAG, new FileLruCache.Limits());
         }
@@ -80,7 +80,7 @@ class ImageResponseCache {
         return stream;
     }
 
-   private static boolean isCDNURL(URL url) {
+    private static boolean isCDNURL(URL url) {
         if (url != null) {
             String uriHost = url.getHost();
 
@@ -98,6 +98,7 @@ class ImageResponseCache {
 
     private static class BufferedHttpInputStream extends BufferedInputStream {
         HttpURLConnection connection;
+
         BufferedHttpInputStream(InputStream stream, HttpURLConnection connection) {
             super(stream, Utility.DEFAULT_STREAM_BUFFER_SIZE);
             this.connection = connection;

@@ -216,20 +216,20 @@ public final class SharedPreferencesTokenCacheTests extends AndroidTestCase {
     }
 
     private static void putShort(String key, Bundle bundle) {
-        bundle.putShort(key, (short)random.nextInt());
+        bundle.putShort(key, (short) random.nextInt());
     }
 
     private static void putShortArray(String key, Bundle bundle) {
         int length = random.nextInt(50);
         short[] array = new short[length];
         for (int i = 0; i < length; i++) {
-            array[i] = (short)random.nextInt();
+            array[i] = (short) random.nextInt();
         }
         bundle.putShortArray(key, array);
     }
 
     private static void putByte(String key, Bundle bundle) {
-        bundle.putByte(key, (byte)random.nextInt());
+        bundle.putByte(key, (byte) random.nextInt());
     }
 
     private static void putByteArray(String key, Bundle bundle) {
@@ -328,7 +328,7 @@ public final class SharedPreferencesTokenCacheTests extends AndroidTestCase {
     }
 
     private static char getChar() {
-        return (char)random.nextInt(255);
+        return (char) random.nextInt(255);
     }
 
     private void ensureApplicationContext() {
@@ -341,8 +341,7 @@ public final class SharedPreferencesTokenCacheTests extends AndroidTestCase {
                 Thread.sleep(50);
                 waitedFor += 50;
             }
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
         }
     }
 

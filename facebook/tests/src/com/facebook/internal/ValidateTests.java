@@ -23,7 +23,7 @@ import com.facebook.internal.Validate;
 import java.util.Arrays;
 
 public class ValidateTests extends AndroidTestCase {
-    
+
     @SmallTest
     public void testNotNullOnNonNull() {
         Validate.notNull("A string", "name");
@@ -40,13 +40,13 @@ public class ValidateTests extends AndroidTestCase {
 
     @SmallTest
     public void testNotEmptyOnNonEmpty() {
-        Validate.notEmpty(Arrays.asList(new String[] { "hi" }), "name");
+        Validate.notEmpty(Arrays.asList(new String[]{"hi"}), "name");
     }
 
     @SmallTest
     public void testNotEmptylOnEmpty() {
         try {
-            Validate.notEmpty(Arrays.asList(new String[] {}), "name");
+            Validate.notEmpty(Arrays.asList(new String[]{}), "name");
             fail("expected exception");
         } catch (Exception e) {
         }

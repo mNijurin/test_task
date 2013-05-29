@@ -27,7 +27,7 @@ import android.support.v4.content.LocalBroadcastManager;
 /**
  * This class helps to create, automatically open (if applicable), save, and
  * restore the Active Session in a way that is similar to Android UI lifecycles.
- * <p>
+ * <p/>
  * When using this class, clients MUST call all the public methods from the
  * respective methods in either an Activity or Fragment. Failure to call all the
  * methods can result in improperly initialized or uninitialized Sessions.
@@ -104,8 +104,8 @@ public class UiLifecycleHelper {
      * To be called from an Activity or Fragment's onActivityResult method.
      *
      * @param requestCode the request code
-     * @param resultCode the result code
-     * @param data the result data
+     * @param resultCode  the result code
+     * @param data        the result data
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Session session = Session.getActiveSession();

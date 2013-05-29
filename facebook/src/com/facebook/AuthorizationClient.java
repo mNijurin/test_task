@@ -26,7 +26,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.webkit.CookieSyncManager;
-import com.example.facebook.R;
+import com.facebook.android.R;
 import com.facebook.internal.ServerProtocol;
 import com.facebook.internal.Utility;
 import com.facebook.model.GraphMultiResult;
@@ -474,7 +474,7 @@ class AuthorizationClient implements Serializable {
         }
 
         void onWebDialogComplete(AuthorizationRequest request, Bundle values,
-                FacebookException error) {
+                                 FacebookException error) {
             Result outcome;
             if (values != null) {
                 AccessToken token = AccessToken
@@ -742,8 +742,8 @@ class AuthorizationClient implements Serializable {
         private String previousAccessToken;
 
         AuthorizationRequest(SessionLoginBehavior loginBehavior, int requestCode, boolean isLegacy,
-                List<String> permissions, SessionDefaultAudience defaultAudience, String applicationId,
-                String validateSameFbidAsToken, StartActivityDelegate startActivityDelegate) {
+                             List<String> permissions, SessionDefaultAudience defaultAudience, String applicationId,
+                             String validateSameFbidAsToken, StartActivityDelegate startActivityDelegate) {
             this.loginBehavior = loginBehavior;
             this.requestCode = requestCode;
             this.isLegacy = isLegacy;

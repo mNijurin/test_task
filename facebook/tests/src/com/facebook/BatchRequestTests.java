@@ -66,7 +66,7 @@ public class BatchRequestTests extends FacebookTestCase {
     public void testCreateNonemptyRequestBatch() {
         Request meRequest = Request.newMeRequest(null, null);
 
-        RequestBatch batch = new RequestBatch(new Request[] { meRequest, meRequest });
+        RequestBatch batch = new RequestBatch(new Request[]{meRequest, meRequest});
         assertEquals(2, batch.size());
         assertEquals(meRequest, batch.get(0));
         assertEquals(meRequest, batch.get(1));
@@ -396,7 +396,7 @@ public class BatchRequestTests extends FacebookTestCase {
         Request requestMe = Request.newMeRequest(session, null);
         Request requestMyFriends = Request.newMyFriendsRequest(session, null);
 
-        CacheableRequestBatch batch = new CacheableRequestBatch(new Request[] { requestMyFriends, requestMe });
+        CacheableRequestBatch batch = new CacheableRequestBatch(new Request[]{requestMyFriends, requestMe});
         batch.setCacheKeyOverride("MyFriends");
 
         // Running the request with empty cache should hit the server.

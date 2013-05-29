@@ -42,6 +42,7 @@ class ImageDownloader {
     /**
      * Downloads the image specified in the passed in request.
      * If a callback is specified, it is guaranteed to be invoked on the calling thread.
+     *
      * @param request Request to process
      */
     static void downloadAsync(ImageRequest request) {
@@ -294,7 +295,7 @@ class ImageDownloader {
             boolean isEqual = false;
 
             if (o != null && o instanceof RequestKey) {
-                RequestKey compareTo = (RequestKey)o;
+                RequestKey compareTo = (RequestKey) o;
                 isEqual = compareTo.url == url && compareTo.tag == tag;
             }
 

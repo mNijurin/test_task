@@ -43,7 +43,7 @@ public class SessionTestsBase extends FacebookTestCase {
     }
 
     ScriptedSession createScriptedSessionOnBlockerThread(final String applicationId,
-            final TokenCachingStrategy cachingStrategy) {
+                                                         final TokenCachingStrategy cachingStrategy) {
         class MutableState {
             ScriptedSession session;
         }

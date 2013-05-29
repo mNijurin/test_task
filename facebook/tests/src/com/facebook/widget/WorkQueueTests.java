@@ -249,7 +249,7 @@ public class WorkQueueTests extends FacebookTestCase {
                 if (n < (weight += sleepWeight)) {
                     // Sleep
                     try {
-                        Thread.sleep(n/4);
+                        Thread.sleep(n / 4);
                     } catch (InterruptedException e) {
                     }
                 } else if (n < (weight += trackThisWeight)) {

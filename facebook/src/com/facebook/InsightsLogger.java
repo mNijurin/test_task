@@ -43,20 +43,20 @@ public class InsightsLogger {
 
     // Event names, these match what the server expects.
     private static final String EVENT_NAME_LOG_CONVERSION_PIXEL = "fb_log_offsite_pixel";
-    private static final String EVENT_NAME_LOG_MOBILE_PURCHASE  = "fb_mobile_purchase";
+    private static final String EVENT_NAME_LOG_MOBILE_PURCHASE = "fb_mobile_purchase";
 
     // Event parameter names, these match what the server expects.
-    private static final String EVENT_PARAMETER_CURRENCY        = "fb_currency";
-    private static final String EVENT_PARAMETER_PIXEL_ID        = "fb_offsite_pixel_id";
-    private static final String EVENT_PARAMETER_PIXEL_VALUE     = "fb_offsite_pixel_value";
+    private static final String EVENT_PARAMETER_CURRENCY = "fb_currency";
+    private static final String EVENT_PARAMETER_PIXEL_ID = "fb_offsite_pixel_id";
+    private static final String EVENT_PARAMETER_PIXEL_VALUE = "fb_offsite_pixel_value";
 
     // Static member variables
     private static Session appAuthSession = null;
 
     // Instance member variables
     private final Context context;
-    private final String  clientToken;
-    private final String  applicationId;
+    private final String clientToken;
+    private final String applicationId;
     private final Session specifiedSession;
 
 
@@ -87,12 +87,11 @@ public class InsightsLogger {
      * Build an InsightsLogger instance to log events through.  The Facebook app that these events are targeted at
      * comes from this application's metadata.
      *
-     * @param context      Used to access the applicationId and the attributionId for non-authenticated users.
-     * @param clientToken  The Facebook app's "client token", which, for a given appid can be found in the Security
-     *                     section of the Advanced tab of the Facebook App settings found
-     *                     at <https://developers.facebook.com/apps/[your-app-id]>.
-     *
-     * @return          InsightsLogger instance to invoke log* methods on.
+     * @param context     Used to access the applicationId and the attributionId for non-authenticated users.
+     * @param clientToken The Facebook app's "client token", which, for a given appid can be found in the Security
+     *                    section of the Advanced tab of the Facebook App settings found
+     *                    at <https://developers.facebook.com/apps/[your-app-id]>.
+     * @return InsightsLogger instance to invoke log* methods on.
      */
     public static InsightsLogger newLogger(Context context, String clientToken) {
         return new InsightsLogger(context, clientToken, null, null);
@@ -102,15 +101,14 @@ public class InsightsLogger {
      * Build an InsightsLogger instance to log events through.  Allow explicit specification of an Facebook app
      * to target.
      *
-     * @param context        Used to access the attributionId for non-authenticated users.
-     * @param clientToken    The Facebook app's "client token", which, for a given appid can be found in the Security
-     *                       section of the Advanced tab of the Facebook App settings found
-     *                       at <https://developers.facebook.com/apps/[your-app-id]>
-     * @param applicationId  Explicitly specified Facebook applicationId to log events against.  If null, the
-     *                       applicationId embedded in the application metadata accessible from 'context' will
-     *                       be used.
-     *
-     * @return          InsightsLogger instance to invoke log* methods on.
+     * @param context       Used to access the attributionId for non-authenticated users.
+     * @param clientToken   The Facebook app's "client token", which, for a given appid can be found in the Security
+     *                      section of the Advanced tab of the Facebook App settings found
+     *                      at <https://developers.facebook.com/apps/[your-app-id]>
+     * @param applicationId Explicitly specified Facebook applicationId to log events against.  If null, the
+     *                      applicationId embedded in the application metadata accessible from 'context' will
+     *                      be used.
+     * @return InsightsLogger instance to invoke log* methods on.
      */
     public static InsightsLogger newLogger(Context context, String clientToken, String applicationId) {
         return new InsightsLogger(context, clientToken, applicationId, null);
@@ -119,18 +117,17 @@ public class InsightsLogger {
     /**
      * Build an InsightsLogger instance to log events through.
      *
-     * @param context        Used to access the attributionId for non-authenticated users.
-     * @param clientToken    The Facebook app's "client token", which, for a given appid can be found in the Security
-     *                       section of the Advanced tab of the Facebook App settings found
-     *                       at <https://developers.facebook.com/apps/[your-app-id]>
-     * @param applicationId  Explicitly specified Facebook applicationId to log events against.  If null, the
-     *                       applicationId embedded in the application metadata accessible from 'context' will
-     *                       be used.
-     * @param session        Explicitly specified Session to log events against.  If null, the activeSession
-     *                       will be used if it's open, otherwise the logging will happen via the "clientToken"
-     *                       and specified appId.
-     *
-     * @return          InsightsLogger instance to invoke log* methods on.
+     * @param context       Used to access the attributionId for non-authenticated users.
+     * @param clientToken   The Facebook app's "client token", which, for a given appid can be found in the Security
+     *                      section of the Advanced tab of the Facebook App settings found
+     *                      at <https://developers.facebook.com/apps/[your-app-id]>
+     * @param applicationId Explicitly specified Facebook applicationId to log events against.  If null, the
+     *                      applicationId embedded in the application metadata accessible from 'context' will
+     *                      be used.
+     * @param session       Explicitly specified Session to log events against.  If null, the activeSession
+     *                      will be used if it's open, otherwise the logging will happen via the "clientToken"
+     *                      and specified appId.
+     * @return InsightsLogger instance to invoke log* methods on.
      */
     public static InsightsLogger newLogger(Context context, String clientToken, String applicationId, Session session) {
         return new InsightsLogger(context, clientToken, applicationId, session);
@@ -139,9 +136,9 @@ public class InsightsLogger {
     /**
      * Logs a purchase event with Facebook, in the specified amount and with the specified currency.
      *
-     * @param purchaseAmount  Amount of purchase, in the currency specified by the 'currency' parameter. This value
-     *                        will be rounded to the thousandths place (e.g., 12.34567 becomes 12.346).
-     * @param currency        Currency used to specify the amount.
+     * @param purchaseAmount Amount of purchase, in the currency specified by the 'currency' parameter. This value
+     *                       will be rounded to the thousandths place (e.g., 12.34567 becomes 12.346).
+     * @param currency       Currency used to specify the amount.
      */
     public void logPurchase(BigDecimal purchaseAmount, Currency currency) {
         logPurchase(purchaseAmount, currency, null);
@@ -151,11 +148,11 @@ public class InsightsLogger {
      * Logs a purchase event with Facebook, in the specified amount and with the specified currency.  Additional
      * detail about the purchase can be passed in through the parameters bundle.
      *
-     * @param purchaseAmount  Amount of purchase, in the currency specified by the 'currency' parameter. This value
-     *                        will be rounded to the thousandths place (e.g., 12.34567 becomes 12.346).
-     * @param currency        Currency used to specify the amount.
-     * @param parameters      Arbitrary additional information for describing this event.  Should have no more than
-     *                        10 entries, and keys should be mostly consistent from one purchase event to the next.
+     * @param purchaseAmount Amount of purchase, in the currency specified by the 'currency' parameter. This value
+     *                       will be rounded to the thousandths place (e.g., 12.34567 becomes 12.346).
+     * @param currency       Currency used to specify the amount.
+     * @param parameters     Arbitrary additional information for describing this event.  Should have no more than
+     *                       10 entries, and keys should be mostly consistent from one purchase event to the next.
      */
     public void logPurchase(BigDecimal purchaseAmount, Currency currency, Bundle parameters) {
 
@@ -244,7 +241,7 @@ public class InsightsLogger {
                     // developer in that case.
                     final int NO_CONNECTIVITY_ERROR_CODE = -1;
                     if (response.getError() != null &&
-                        response.getError().getErrorCode() != NO_CONNECTIVITY_ERROR_CODE) {
+                            response.getError().getErrorCode() != NO_CONNECTIVITY_ERROR_CODE) {
                         notifyDeveloperError(
                                 String.format(
                                         "Error publishing Insights event '%s'\n  Response: %s\n  Error: %s",
@@ -281,7 +278,7 @@ public class InsightsLogger {
                     Object value = parameters.get(key);
 
                     if (!(value instanceof String) &&
-                        !(value instanceof Number)) {
+                            !(value instanceof Number)) {
 
                         notifyDeveloperError(
                                 String.format("Parameter '%s' must be a string or a numeric type.", key));

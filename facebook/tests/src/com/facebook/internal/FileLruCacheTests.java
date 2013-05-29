@@ -30,21 +30,25 @@ import java.util.Random;
 public final class FileLruCacheTests extends AndroidTestCase {
     private static final Random random = new Random();
 
-    @SmallTest @MediumTest @LargeTest
+    @SmallTest
+    @MediumTest
+    @LargeTest
     public void testCacheOutputStream() throws IOException {
         int dataSize = 1024;
         byte[] data = generateBytes(dataSize);
         String key = "a";
 
         // Limit to 2x to allow for extra header data
-        FileLruCache cache = new FileLruCache(getContext(), "testCacheOutputStream", limitCacheSize(2*dataSize));
+        FileLruCache cache = new FileLruCache(getContext(), "testCacheOutputStream", limitCacheSize(2 * dataSize));
 
         put(cache, key, data);
         checkValue(cache, key, data);
         cache.clearForTest();
     }
 
-    @SmallTest @MediumTest @LargeTest
+    @SmallTest
+    @MediumTest
+    @LargeTest
     public void testCacheInputStream() throws IOException {
         int dataSize = 1024;
         byte[] data = generateBytes(dataSize);
@@ -52,7 +56,7 @@ public final class FileLruCacheTests extends AndroidTestCase {
         InputStream stream = new ByteArrayInputStream(data);
 
         // Limit to 2x to allow for extra header data
-        FileLruCache cache = new FileLruCache(getContext(), "testCacheInputStream", limitCacheSize(2*dataSize));
+        FileLruCache cache = new FileLruCache(getContext(), "testCacheInputStream", limitCacheSize(2 * dataSize));
         cache.clearForTest();
 
         InputStream wrapped = cache.interceptAndPut(key, stream);
@@ -60,14 +64,16 @@ public final class FileLruCacheTests extends AndroidTestCase {
         checkValue(cache, key, data);
     }
 
-    @SmallTest @MediumTest @LargeTest
+    @SmallTest
+    @MediumTest
+    @LargeTest
     public void testCacheClear() throws IOException {
         int dataSize = 1024;
         byte[] data = generateBytes(dataSize);
         String key = "a";
 
         // Limit to 2x to allow for extra header data
-        FileLruCache cache = new FileLruCache(getContext(), "testCacheClear", limitCacheSize(2*dataSize));
+        FileLruCache cache = new FileLruCache(getContext(), "testCacheClear", limitCacheSize(2 * dataSize));
         cache.clearForTest();
 
         put(cache, key, data);
@@ -78,7 +84,9 @@ public final class FileLruCacheTests extends AndroidTestCase {
         assertEquals(0, cache.sizeInBytesForTest());
     }
 
-    @SmallTest @MediumTest @LargeTest
+    @SmallTest
+    @MediumTest
+    @LargeTest
     public void testSizeInBytes() throws IOException {
         int count = 17;
         int dataSize = 53;
@@ -86,7 +94,7 @@ public final class FileLruCacheTests extends AndroidTestCase {
         byte[] data = generateBytes(dataSize);
 
         // Limit to 2x to allow for extra header data
-        FileLruCache cache = new FileLruCache(getContext(), "testSizeInBytes", limitCacheSize(2*cacheSize));
+        FileLruCache cache = new FileLruCache(getContext(), "testSizeInBytes", limitCacheSize(2 * cacheSize));
         cache.clearForTest();
 
         for (int i = 0; i < count; i++) {
@@ -106,7 +114,8 @@ public final class FileLruCacheTests extends AndroidTestCase {
         }
     }
 
-    @MediumTest @LargeTest
+    @MediumTest
+    @LargeTest
     public void testCacheSizeLimit() throws IOException {
         int count = 64;
         int dataSize = 32;
@@ -126,7 +135,7 @@ public final class FileLruCacheTests extends AndroidTestCase {
             // This changes verification such that the final cache size lands somewhere
             // between half and full quota.
             int totalDataSize = (i + 1) * dataSize;
-            assertTrue(cache.sizeInBytesForTest() > Math.min(totalDataSize, cacheSize/2));
+            assertTrue(cache.sizeInBytesForTest() > Math.min(totalDataSize, cacheSize / 2));
             assertTrue(cache.sizeInBytesForTest() < Math.min(2 * totalDataSize, cacheSize));
         }
 
@@ -148,7 +157,8 @@ public final class FileLruCacheTests extends AndroidTestCase {
         assertEquals(true, hasNoValueExists);
     }
 
-    @MediumTest @LargeTest
+    @MediumTest
+    @LargeTest
     public void testCacheCountLimit() throws IOException {
         int count = 64;
         int dataSize = 32;
@@ -226,7 +236,7 @@ public final class FileLruCacheTests extends AndroidTestCase {
         final byte[] data = generateBytes(dataSize);
 
         final FileLruCache cache = new FileLruCache(
-                getContext(), "testConcurrentWritesToSameKey", limitCacheCount(count+1));
+                getContext(), "testConcurrentWritesToSameKey", limitCacheCount(count + 1));
         cache.clearForTest();
 
         Runnable run = new Runnable() {
@@ -333,7 +343,7 @@ public final class FileLruCacheTests extends AndroidTestCase {
         try {
             for (int i = 0; i < expected.length; i++) {
                 int b = actual.read();
-                assertEquals(((int)expected[i]) & 0xff, b);
+                assertEquals(((int) expected[i]) & 0xff, b);
             }
 
             int eof = actual.read();

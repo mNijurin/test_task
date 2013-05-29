@@ -191,6 +191,7 @@ public final class GraphObjectFactoryTests extends AndroidTestCase {
 
     private interface GraphMetric extends GraphObject {
         String getIntAsString();
+
         String getDoubleAsString();
     }
 
@@ -713,6 +714,7 @@ public final class GraphObjectFactoryTests extends AndroidTestCase {
         Date getDate3();
 
         Date getDate4();
+
         void setDate4(Date date);
     }
 
@@ -1057,7 +1059,7 @@ public final class GraphObjectFactoryTests extends AndroidTestCase {
 
         GraphObjectList<Base> cast = derived.castToListOf(Base.class);
 
-        assertTrue((GraphObjectList<?>)derived == (GraphObjectList<?>)cast);
+        assertTrue((GraphObjectList<?>) derived == (GraphObjectList<?>) cast);
     }
 
     @SmallTest

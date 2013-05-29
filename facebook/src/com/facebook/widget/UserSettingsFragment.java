@@ -26,8 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.facebook.*;
-import com.example.facebook.R;
-
+import com.facebook.android.R;
 import com.facebook.model.GraphUser;
 
 import java.net.MalformedURLException;
@@ -51,8 +50,8 @@ public class UserSettingsFragment extends FacebookFragment {
     private static final String ID = "id";
     private static final String PICTURE = "picture";
     private static final String FIELDS = "fields";
-    
-    private static final String REQUEST_FIELDS = TextUtils.join(",", new String[] {ID, NAME, PICTURE});
+
+    private static final String REQUEST_FIELDS = TextUtils.join(",", new String[]{ID, NAME, PICTURE});
 
     private LoginButton loginButton;
     private LoginButton.LoginButtonProperties loginButtonProperties = new LoginButton.LoginButtonProperties();
@@ -74,7 +73,7 @@ public class UserSettingsFragment extends FacebookFragment {
             loginButton.setSession(session);
         }
         connectedStateLabel = (TextView) view.findViewById(R.id.com_facebook_usersettingsfragment_profile_name);
-        
+
         // if no background is set for some reason, then default to Facebook blue
         if (view.getBackground() == null) {
             view.setBackgroundColor(getResources().getColor(R.color.com_facebook_blue));
@@ -161,7 +160,6 @@ public class UserSettingsFragment extends FacebookFragment {
      * (by managing the session explicitly).
      *
      * @param permissions the read permissions to use
-     *
      * @throws UnsupportedOperationException if setPublishPermissions has been called
      */
     public void setReadPermissions(List<String> permissions) {
@@ -186,9 +184,8 @@ public class UserSettingsFragment extends FacebookFragment {
      * (by managing the session explicitly).
      *
      * @param permissions the read permissions to use
-     *
      * @throws UnsupportedOperationException if setReadPermissions has been called
-     * @throws IllegalArgumentException if permissions is null or empty
+     * @throws IllegalArgumentException      if permissions is null or empty
      */
     public void setPublishPermissions(List<String> permissions) {
         loginButtonProperties.setPublishPermissions(permissions, getSession());
@@ -221,8 +218,8 @@ public class UserSettingsFragment extends FacebookFragment {
      * will be used.
      *
      * @return loginBehavior The {@link SessionLoginBehavior SessionLoginBehavior} that
-     *                      specifies what behaviors should be attempted during
-     *                      authorization.
+     *         specifies what behaviors should be attempted during
+     *         authorization.
      */
     public SessionLoginBehavior getLoginBehavior() {
         return loginButtonProperties.getLoginBehavior();
@@ -260,7 +257,7 @@ public class UserSettingsFragment extends FacebookFragment {
     /**
      * Sets the callback interface that will be called whenever the status of the Session
      * associated with this LoginButton changes.
-
+     *
      * @return the callback interface
      */
     public Session.StatusCallback getSessionStatusCallback() {
@@ -281,7 +278,7 @@ public class UserSettingsFragment extends FacebookFragment {
     List<String> getPermissions() {
         return loginButtonProperties.getPermissions();
     }
-    
+
     private void fetchUserInfo() {
         final Session currentSession = getSession();
         if (currentSession != null && currentSession.isOpened()) {
@@ -308,7 +305,7 @@ public class UserSettingsFragment extends FacebookFragment {
             user = null;
         }
     }
-    
+
     private void updateUI() {
         if (!isAdded()) {
             return;
@@ -317,7 +314,7 @@ public class UserSettingsFragment extends FacebookFragment {
             connectedStateLabel.setTextColor(getResources().getColor(R.color.com_facebook_usersettingsfragment_connected_text_color));
             connectedStateLabel.setShadowLayer(1f, 0f, -1f,
                     getResources().getColor(R.color.com_facebook_usersettingsfragment_connected_shadow_color));
-            
+
             if (user != null) {
                 ImageRequest request = getImageRequest();
                 if (request != null) {
