@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  xmlns:facebook="http://schemas.android.com/apk/res-auto"
+			  android:orientation="horizontal"
+			  android:layout_width="fill_parent"
+			  android:background="@color/white"
+			  android:layout_height="wrap_content">
+	<com.facebook.widget.ProfilePictureView
+			android:id="@+id/friends_avatar"
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:layout_gravity="center"
+			android:gravity="center_horizontal"
+			facebook:preset_size="small" />
+
+	<TextView
+		android:id="@+id/friends_name"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:gravity="center_vertical"
+		android:padding="15dp"/>
+
+</LinearLayout>
