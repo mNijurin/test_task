@@ -2,6 +2,10 @@
 <resources>
 	<string name="facebook_app_id">464610510221913</string>
 	<string name="app_name">TestTask</string>
-	<string name="login_button">Log In</string>
-	<string name="progress_dialog_message">Loading...</string>
+	<string name="log_in">Log In</string>
+	<string name="log_off">Log Off</string>
+	<string name="progress_dialog_message">Loading…</string>
+	<string name="show_friends">Show Friends</string>
+	<string name="hello">Hello</string>
+	<string name="unknown_error">Oops! Something goes wrong!</string>
 </resources>

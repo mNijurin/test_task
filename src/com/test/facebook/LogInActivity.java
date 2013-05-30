@@ -2,16 +2,19 @@ package com.test.facebook;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
 
 public class LogInActivity extends FragmentActivity {
 
-    TextView textView;
+    TextView informationTextView;
+    Button logInButton;
     Session session;
 
     private GraphUser user;
@@ -34,51 +37,69 @@ public class LogInActivity extends FragmentActivity {
 
         setContentView(R.layout.main);
 
-        textView = (TextView) findViewById(R.id.textView);
+        informationTextView = (TextView) findViewById(R.id.textView);
+        logInButton = (Button) findViewById(R.id.login_button);
     }
 
     public void loginClickListener(View v){
-        // start Facebook Login
-        final ProgressDialog progress = new ProgressDialog(this);
-        progress.setMessage(getString(R.string.progress_dialog_message));
-        progress.show();
+        if (session == null || !session.isOpened()) {
+            final ProgressDialog progress = new ProgressDialog(this);
+            progress.setMessage(getString(R.string.progress_dialog_message));
+            progress.show();
 
-        session = Session.openActiveSession(this, true, new Session.StatusCallback() {
+            session = Session.openActiveSession(this, true, new Session.StatusCallback() {
 
-            // callback when session changes state
-            @Override
-            public void call(final Session session, SessionState state, Exception exception) {
-                if (session.isOpened()) {
-                    // make request to the /me API
-                    Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
-
-                        // callback after Graph API response with user object
-                        @Override
-                        public void onCompleted(GraphUser user, Response response) {
-                            progress.dismiss();
-
-                            if (user != null) {
-                                Intent intent = new Intent(getBaseContext(), UserActivity.class);
-                                UserActivity.user = user;
-                                UserActivity.session = session;
-
-                                LogInActivity.this.startActivity(intent);
-
-                                textView.setText("Hello " + user.getName() + "!");
-                            }
-                        }
-
-                    });
+                // callback when session changes state
+                @Override
+                public void call(final Session session, SessionState state, Exception exception) {
+                    if(exception != null){
+                        progress.dismiss();
+                        setInformationText(exception.getLocalizedMessage(), true);
+                    } else
+                        makeLoginRequest(progress);
                 }
+            });
+            session.getAccessToken();
+        } else if(user != null) {
+            showFriends(user);
+        }
+    }
 
-                if(exception != null){
-                    progress.dismiss();
-                    textView.setText(exception.getLocalizedMessage());
+    private void makeLoginRequest(final ProgressDialog progress) {
+        // make request to the /me API
+        Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+
+            // callback after Graph API response with user object
+            @Override
+            public void onCompleted(GraphUser u, Response response) {
+                progress.dismiss();
+
+                if (u != null) {
+                    user = u;
+                    logInButton.setText(getString(R.string.show_friends));
+                    setInformationText(getString(R.string.hello) + " " + u.getName() + "!", false);
+                } else {
+                    setInformationText(getString(R.string.unknown_error), true);
                 }
             }
         });
+    }
 
-        session.getAccessToken();
+    private void showFriends(GraphUser user) {
+        Intent intent = new Intent(getBaseContext(), UserActivity.class);
+        UserActivity.user = user;
+        UserActivity.session = session;
+
+        this.startActivity(intent);
+    }
+
+    private void setInformationText(String text, boolean error){
+        if(error){
+            informationTextView.setTextColor(Color.RED);
+        } else {
+            informationTextView.setTextColor(Color.GRAY);
+        }
+        informationTextView.setText(text);
     }
 
     @Override
@@ -114,9 +135,9 @@ public class LogInActivity extends FragmentActivity {
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
         if ((exception instanceof FacebookOperationCanceledException ||
                         exception instanceof FacebookAuthorizationException)) {
-            textView.setText(exception.getLocalizedMessage());
+            informationTextView.setText(exception.getLocalizedMessage());
         } else if (state == SessionState.OPENED_TOKEN_UPDATED) {
-            textView.setText(user.getFirstName());
+            informationTextView.setText(user.getFirstName());
         }
     }
 
