@@ -1,5 +1,6 @@
 package com.test.facebook;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -38,6 +39,10 @@ public class LogInActivity extends FragmentActivity {
 
     public void loginClickListener(View v){
         // start Facebook Login
+        final ProgressDialog progress = new ProgressDialog(this);
+        progress.setMessage(getString(R.string.progress_dialog_message));
+        progress.show();
+
         session = Session.openActiveSession(this, true, new Session.StatusCallback() {
 
             // callback when session changes state
@@ -50,6 +55,8 @@ public class LogInActivity extends FragmentActivity {
                         // callback after Graph API response with user object
                         @Override
                         public void onCompleted(GraphUser user, Response response) {
+                            progress.dismiss();
+
                             if (user != null) {
                                 Intent intent = new Intent(getBaseContext(), UserActivity.class);
                                 UserActivity.user = user;
@@ -65,6 +72,7 @@ public class LogInActivity extends FragmentActivity {
                 }
 
                 if(exception != null){
+                    progress.dismiss();
                     textView.setText(exception.getLocalizedMessage());
                 }
             }

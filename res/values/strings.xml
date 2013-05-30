@@ -3,4 +3,5 @@
 	<string name="facebook_app_id">464610510221913</string>
 	<string name="app_name">TestTask</string>
 	<string name="login_button">Log In</string>
+	<string name="progress_dialog_message">Loading...</string>
 </resources>

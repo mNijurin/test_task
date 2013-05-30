@@ -31,8 +31,8 @@ public class FriendsListAdapter extends ArrayAdapter<Friend>{
 
         Friend friend = getItem(position);
 
-        if(friend.userId != null){
-            ((ProfilePictureView)view.findViewById(R.id.friends_avatar)).setProfileId(friend.userId);
+        if(friend.friendId != null){
+            ((ProfilePictureView)view.findViewById(R.id.friends_avatar)).setProfileId(friend.friendId);
         }
         ((TextView)view.findViewById(R.id.friends_name)).setText(friend.name);
 

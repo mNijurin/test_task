@@ -7,6 +7,6 @@ package com.test.facebook.data;
  * Time: 12:50 PM
  */
 public class Friend {
-    public String userId;
+    public String friendId;
     public String name;
 }
