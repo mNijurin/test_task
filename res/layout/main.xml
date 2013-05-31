@@ -13,11 +13,19 @@
 			android:layout_marginBottom="8dp"
 			/>
 	<Button
-			android:id="@+id/login_button"
+			android:id="@+id/log_in_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:onClick="loginClickListener"
 			android:text="@string/log_in"
 			/>
+	<Button
+		android:id="@+id/log_out_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="logOutClickListener"
+		android:text="@string/log_out"
+		android:visibility="gone"
+		/>
 </LinearLayout>
 

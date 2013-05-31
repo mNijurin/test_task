@@ -14,7 +14,7 @@ import com.facebook.model.GraphUser;
 public class LogInActivity extends FragmentActivity {
 
     TextView informationTextView;
-    Button logInButton;
+    Button logInButton, logOutButton;
     Session session;
 
     private GraphUser user;
@@ -38,7 +38,8 @@ public class LogInActivity extends FragmentActivity {
         setContentView(R.layout.main);
 
         informationTextView = (TextView) findViewById(R.id.textView);
-        logInButton = (Button) findViewById(R.id.login_button);
+        logInButton = (Button) findViewById(R.id.log_in_button);
+        logOutButton = (Button) findViewById(R.id.log_out_button);
     }
 
     public void loginClickListener(View v){
@@ -55,8 +56,9 @@ public class LogInActivity extends FragmentActivity {
                     if(exception != null){
                         progress.dismiss();
                         setInformationText(exception.getLocalizedMessage(), true);
-                    } else
+                    } else if(state == SessionState.OPENED || state == SessionState.OPENED_TOKEN_UPDATED){
                         makeLoginRequest(progress);
+                    }
                 }
             });
             session.getAccessToken();
@@ -77,6 +79,7 @@ public class LogInActivity extends FragmentActivity {
                 if (u != null) {
                     user = u;
                     logInButton.setText(getString(R.string.show_friends));
+                    logOutButton.setVisibility(View.VISIBLE);
                     setInformationText(getString(R.string.hello) + " " + u.getName() + "!", false);
                 } else {
                     setInformationText(getString(R.string.unknown_error), true);
@@ -100,6 +103,14 @@ public class LogInActivity extends FragmentActivity {
             informationTextView.setTextColor(Color.GRAY);
         }
         informationTextView.setText(text);
+    }
+
+    public void logOutClickListener(View v){
+        setInformationText("", false);
+        logInButton.setText(getString(R.string.log_in));
+        session.closeAndClearTokenInformation();
+        logOutButton.setVisibility(View.GONE);
+
     }
 
     @Override
