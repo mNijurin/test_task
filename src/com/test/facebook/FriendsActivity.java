@@ -39,7 +39,7 @@ public class FriendsActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.user_info);
+        setContentView(R.layout.friends);
 
         helloLabel = (TextView) findViewById(R.id.hello_label);
         helloLabel.setText("Hello " + user.getName() + "!");
