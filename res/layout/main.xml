@@ -20,6 +20,14 @@
 			android:text="@string/log_in"
 			/>
 	<Button
+			android:id="@+id/show_friends_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="showFriendsClickListener"
+			android:text="@string/show_friends"
+			android:visibility="gone"
+			/>
+	<Button
 		android:id="@+id/log_out_button"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"

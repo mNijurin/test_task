@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+			android:id="@+id/show_location"
+			android:title="@string/show_location"
+			android:icon="@drawable/location_icon"
+			/>
+	<item
+			android:id="@+id/show_friends"
+			android:title="@string/show_friends"
+			android:icon="@drawable/friends_icon"
+			/>
+	<item
+			android:id="@+id/log_out"
+			android:title="@string/log_out"
+			android:icon="@drawable/log_out_icon"
+			/>
+	<item
+			android:id="@+id/log_in"
+			android:title="@string/log_in"
+			android:icon="@drawable/log_in_icon"
+			/>
+</menu>

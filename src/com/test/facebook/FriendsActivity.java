@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Time: 12:00 PM
  */
 
-public class UserActivity extends FragmentActivity {
+public class FriendsActivity extends FragmentActivity {
 
     static GraphUser user;
     static Session session;

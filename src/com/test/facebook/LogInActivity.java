@@ -4,19 +4,21 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
+import com.test.facebook.menu.ActivityWithMenu;
+import com.test.facebook.menu.OnMenuItemClick;
 
-public class LogInActivity extends FragmentActivity {
+public class LogInActivity extends ActivityWithMenu {
 
     TextView informationTextView;
-    Button logInButton, logOutButton;
-    Session session;
+    Button logInButton, logOutButton, showFriendsButton;
 
+    Session session;
     private GraphUser user;
 
     private UiLifecycleHelper uiHelper;
@@ -37,12 +39,40 @@ public class LogInActivity extends FragmentActivity {
 
         setContentView(R.layout.main);
 
+        this.provideOnMenuItemClickListener(new OnMenuItemClick() {
+            @Override
+            public boolean onOptionsMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.show_location) {
+//todo show location
+                    return true;
+                }
+                if (item.getItemId() == R.id.show_friends) {
+                    showFriends(user);
+                    return true;
+                }
+                if (item.getItemId() == R.id.log_in) {
+                    logIn();
+                    return true;
+                }
+                if (item.getItemId() == R.id.log_out) {
+                    logOut();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         informationTextView = (TextView) findViewById(R.id.textView);
         logInButton = (Button) findViewById(R.id.log_in_button);
         logOutButton = (Button) findViewById(R.id.log_out_button);
+        showFriendsButton = (Button) findViewById(R.id.show_friends_button);
     }
 
     public void loginClickListener(View v){
+        logIn();
+    }
+
+    private void logIn() {
         if (session == null || !session.isOpened()) {
             final ProgressDialog progress = new ProgressDialog(this);
             progress.setMessage(getString(R.string.progress_dialog_message));
@@ -53,17 +83,15 @@ public class LogInActivity extends FragmentActivity {
                 // callback when session changes state
                 @Override
                 public void call(final Session session, SessionState state, Exception exception) {
-                    if(exception != null){
+                    if (exception != null) {
                         progress.dismiss();
                         setInformationText(exception.getLocalizedMessage(), true);
-                    } else if(state == SessionState.OPENED || state == SessionState.OPENED_TOKEN_UPDATED){
+                    } else if (state == SessionState.OPENED || state == SessionState.OPENED_TOKEN_UPDATED) {
                         makeLoginRequest(progress);
                     }
                 }
             });
             session.getAccessToken();
-        } else if(user != null) {
-            showFriends(user);
         }
     }
 
@@ -78,7 +106,8 @@ public class LogInActivity extends FragmentActivity {
 
                 if (u != null) {
                     user = u;
-                    logInButton.setText(getString(R.string.show_friends));
+                    logInButton.setVisibility(View.GONE);
+                    showFriendsButton.setVisibility(View.VISIBLE);
                     logOutButton.setVisibility(View.VISIBLE);
                     setInformationText(getString(R.string.hello) + " " + u.getName() + "!", false);
                 } else {
@@ -88,12 +117,19 @@ public class LogInActivity extends FragmentActivity {
         });
     }
 
-    private void showFriends(GraphUser user) {
-        Intent intent = new Intent(getBaseContext(), UserActivity.class);
-        UserActivity.user = user;
-        UserActivity.session = session;
+    public void showFriendsClickListener(View v){
+        showFriends(user);
+    }
 
-        this.startActivity(intent);
+    private void showFriends(GraphUser user) {
+       if(user != null){
+            Intent intent = new Intent(getBaseContext(), FriendsActivity.class);
+            FriendsActivity.user = user;
+            FriendsActivity.session = session;
+
+            this.startActivity(intent);
+        } else
+           setInformationText(getString(R.string.unknown_error), true);
     }
 
     private void setInformationText(String text, boolean error){
@@ -106,11 +142,15 @@ public class LogInActivity extends FragmentActivity {
     }
 
     public void logOutClickListener(View v){
+        logOut();
+    }
+
+    private void logOut() {
         setInformationText("", false);
-        logInButton.setText(getString(R.string.log_in));
+        logInButton.setVisibility(View.VISIBLE);
         session.closeAndClearTokenInformation();
         logOutButton.setVisibility(View.GONE);
-
+        showFriendsButton.setVisibility(View.GONE);
     }
 
     @Override
