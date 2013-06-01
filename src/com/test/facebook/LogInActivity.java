@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
 import com.test.facebook.menu.ActivityWithMenu;
-import com.test.facebook.menu.MenuType;
+import com.test.facebook.menu.UserState;
 import com.test.facebook.menu.OnMenuItemClick;
 
 public class LogInActivity extends ActivityWithMenu {
@@ -39,7 +39,7 @@ public class LogInActivity extends ActivityWithMenu {
         uiHelper.onCreate(savedInstanceState);
 
         setContentView(R.layout.main);
-        this.setMenuType(MenuType.LoggedOut);
+        this.setUserState(UserState.LoggedOut);
 
         this.provideOnMenuItemClickListener(new OnMenuItemClick() {
             @Override
@@ -68,6 +68,24 @@ public class LogInActivity extends ActivityWithMenu {
         logInButton = (Button) findViewById(R.id.log_in_button);
         logOutButton = (Button) findViewById(R.id.log_out_button);
         showFriendsButton = (Button) findViewById(R.id.show_friends_button);
+
+        updateUI();
+    }
+
+    private void updateUI(){
+        if(this.userState == UserState.LoggedOut){
+            setInformationText("", false);
+            logInButton.setVisibility(View.VISIBLE);
+            logOutButton.setVisibility(View.GONE);
+            showFriendsButton.setVisibility(View.GONE);
+        }
+        if(this.userState == UserState.LoggedIn){
+            setInformationText(getString(R.string.hello) + " " + user.getName() + "!", false);
+            logInButton.setVisibility(View.GONE);
+            logOutButton.setVisibility(View.VISIBLE);
+            showFriendsButton.setVisibility(View.VISIBLE);
+
+        }
     }
 
     public void loginClickListener(View v){
@@ -108,11 +126,8 @@ public class LogInActivity extends ActivityWithMenu {
 
                 if (u != null) {
                     user = u;
-                    logInButton.setVisibility(View.GONE);
-                    showFriendsButton.setVisibility(View.VISIBLE);
-                    logOutButton.setVisibility(View.VISIBLE);
-                    setInformationText(getString(R.string.hello) + " " + u.getName() + "!", false);
-                    LogInActivity.this.setMenuType(MenuType.LoggedIn);
+                    LogInActivity.this.setUserState(UserState.LoggedIn);
+                    updateUI();
                 } else {
                     setInformationText(getString(R.string.unknown_error), true);
                 }
@@ -149,12 +164,9 @@ public class LogInActivity extends ActivityWithMenu {
     }
 
     private void logOut() {
-        setInformationText("", false);
-        logInButton.setVisibility(View.VISIBLE);
         session.closeAndClearTokenInformation();
-        logOutButton.setVisibility(View.GONE);
-        showFriendsButton.setVisibility(View.GONE);
-        this.setMenuType(MenuType.LoggedOut);
+        this.setUserState(UserState.LoggedOut);
+        updateUI();
     }
 
     @Override

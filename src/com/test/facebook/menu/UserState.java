@@ -6,7 +6,7 @@ package com.test.facebook.menu;
  * Date: 6/1/13
  * Time: 11:04 AM
  */
-public enum MenuType {
+public enum UserState {
     LoggedIn,
     LoggedOut;
 }
