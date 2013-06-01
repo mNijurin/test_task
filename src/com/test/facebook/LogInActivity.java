@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
 import com.test.facebook.menu.ActivityWithMenu;
+import com.test.facebook.menu.MenuType;
 import com.test.facebook.menu.OnMenuItemClick;
 
 public class LogInActivity extends ActivityWithMenu {
@@ -38,6 +39,7 @@ public class LogInActivity extends ActivityWithMenu {
         uiHelper.onCreate(savedInstanceState);
 
         setContentView(R.layout.main);
+        this.setMenuType(MenuType.LoggedOut);
 
         this.provideOnMenuItemClickListener(new OnMenuItemClick() {
             @Override
@@ -110,6 +112,7 @@ public class LogInActivity extends ActivityWithMenu {
                     showFriendsButton.setVisibility(View.VISIBLE);
                     logOutButton.setVisibility(View.VISIBLE);
                     setInformationText(getString(R.string.hello) + " " + u.getName() + "!", false);
+                    LogInActivity.this.setMenuType(MenuType.LoggedIn);
                 } else {
                     setInformationText(getString(R.string.unknown_error), true);
                 }
@@ -151,6 +154,7 @@ public class LogInActivity extends ActivityWithMenu {
         session.closeAndClearTokenInformation();
         logOutButton.setVisibility(View.GONE);
         showFriendsButton.setVisibility(View.GONE);
+        this.setMenuType(MenuType.LoggedOut);
     }
 
     @Override

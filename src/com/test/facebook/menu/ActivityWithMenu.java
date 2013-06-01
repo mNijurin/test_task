@@ -16,6 +16,7 @@ import com.test.facebook.R;
 public class ActivityWithMenu extends FragmentActivity {
 
     OnMenuItemClick onMenuItemClickListener;
+    MenuType menuType;
 
     public void provideOnMenuItemClickListener(OnMenuItemClick onMenuItemClickListener) {
         this.onMenuItemClickListener = onMenuItemClickListener;
@@ -36,7 +37,27 @@ public class ActivityWithMenu extends FragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         return onMenuItemClickListener.onOptionsMenuItemClick(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(menuType == MenuType.LoggedOut){
+            menu.findItem(R.id.log_in).setVisible(true);
+
+            menu.findItem(R.id.log_out).setVisible(false);
+            menu.findItem(R.id.show_friends).setVisible(false);
+        }
+        if(menuType == MenuType.LoggedIn){
+            menu.findItem(R.id.log_in).setVisible(false);
+
+            menu.findItem(R.id.log_out).setVisible(true);
+            menu.findItem(R.id.show_friends).setVisible(true);
+        }
+        return true;
+    }
+
+    public void setMenuType(MenuType menuType) {
+        this.menuType = menuType;
     }
 }
