@@ -10,9 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
+import com.google.android.gms.common.ConnectionResult;
 import com.test.facebook.menu.ActivityWithMenu;
 import com.test.facebook.menu.UserState;
 import com.test.facebook.menu.OnMenuItemClick;
+
+import static com.google.android.gms.common.GooglePlayServicesUtil.getErrorDialog;
+import static com.google.android.gms.common.GooglePlayServicesUtil.isGooglePlayServicesAvailable;
 
 public class LogInActivity extends ActivityWithMenu {
 
@@ -45,7 +49,13 @@ public class LogInActivity extends ActivityWithMenu {
             @Override
             public boolean onOptionsMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.show_location) {
-//todo show location
+//todo show current location
+                    int googlePlayServicesAvailabilityStatus = isGooglePlayServicesAvailable(getBaseContext());
+                    if(googlePlayServicesAvailabilityStatus == ConnectionResult.SUCCESS){
+                        Intent intent = new Intent(getBaseContext(), LocationActivity.class);
+                        LogInActivity.this.startActivity(intent);
+                    } else
+                        getErrorDialog(googlePlayServicesAvailabilityStatus, LogInActivity.this, 0).show();
                     return true;
                 }
                 if (item.getItemId() == R.id.show_friends) {
