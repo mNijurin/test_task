@@ -196,8 +196,8 @@ public class LogInActivity extends ActivityWithMenu {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == TestTaskConstants.LOCATION_ACTIVITY_REQUEST_CODE){
             if(resultCode == RESULT_OK){
-                setInformationText("Your location: " + data.getStringExtra(TestTaskConstants.SELF_LOCATION) + "\n" +
-                        "You selected: " + data.getStringExtra(TestTaskConstants.SELECTED_LOCATION), false);
+                setInformationText(getString(R.string.your_location) + " " + data.getStringExtra(TestTaskConstants.SELF_LOCATION) + "\n" +
+                        getString(R.string.you_selected) + " " + data.getStringExtra(TestTaskConstants.SELECTED_LOCATION), false);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
