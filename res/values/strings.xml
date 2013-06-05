@@ -9,4 +9,11 @@
 	<string name="hello">Hello</string>
 	<string name="unknown_error">Oops! Something goes wrong!</string>
 	<string name="show_location">Show my location</string>
+	<string name="selected_place">Selected place</string>
+	<string name="tip_for_long_press">Long press for move</string>
+	<string name="complete">Accept</string>
+	<string name="self_location">self_location</string>
+	<string name="selected_location">selected_location</string>
+	<string name="place_not_selected">place have not been selected</string>
+	<string name="self_location_not_available">not available</string>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
 import com.google.android.gms.common.ConnectionResult;
+import com.test.facebook.data.TestTaskConstants;
 import com.test.facebook.menu.ActivityWithMenu;
 import com.test.facebook.menu.UserState;
 import com.test.facebook.menu.OnMenuItemClick;
@@ -49,11 +50,11 @@ public class LogInActivity extends ActivityWithMenu {
             @Override
             public boolean onOptionsMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.show_location) {
-//todo show current location
+
                     int googlePlayServicesAvailabilityStatus = isGooglePlayServicesAvailable(getBaseContext());
                     if(googlePlayServicesAvailabilityStatus == ConnectionResult.SUCCESS){
                         Intent intent = new Intent(getBaseContext(), LocationActivity.class);
-                        LogInActivity.this.startActivity(intent);
+                        LogInActivity.this.startActivityForResult(intent, TestTaskConstants.LOCATION_ACTIVITY_REQUEST_CODE);
                     } else
                         getErrorDialog(googlePlayServicesAvailabilityStatus, LogInActivity.this, 0).show();
                     return true;
@@ -193,8 +194,12 @@ public class LogInActivity extends ActivityWithMenu {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        uiHelper.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == TestTaskConstants.LOCATION_ACTIVITY_REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+                setInformationText("Your location: " + data.getStringExtra(TestTaskConstants.SELF_LOCATION) + "\n" +
+                        "You selected: " + data.getStringExtra(TestTaskConstants.SELECTED_LOCATION), false);
+            }
+        }
     }
 
     @Override
