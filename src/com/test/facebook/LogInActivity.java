@@ -199,6 +199,9 @@ public class LogInActivity extends ActivityWithMenu {
                 setInformationText("Your location: " + data.getStringExtra(TestTaskConstants.SELF_LOCATION) + "\n" +
                         "You selected: " + data.getStringExtra(TestTaskConstants.SELECTED_LOCATION), false);
             }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+            uiHelper.onActivityResult(requestCode, resultCode, data);
         }
     }
 
